@@ -1,51 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title></ion-title>
+    </ion-navbar>
 </ion-header>
-
-<ion-content class="home" padding>
-
-    <h2 class="center">Ionic 2 - Blank Starter</h2> 
-
-    <div class="center">
-        <p class="ionic-logo"></p>
-    </div>
-
-    <ion-card>
+<ion-content padding>
+    <ion-card *ngFor="let matchCard of matchCards | async">
         <ion-card-header>
-            Docs are here to help you
         </ion-card-header>
-
-        <ion-list>
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820516')">
-                <ion-icon name="jet" item-left></ion-icon>
-                Getting Started
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820761')">
-                <ion-icon name="ionic" item-left></ion-icon>
-                Ionic Framework
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820520')">
-                <ion-icon name="thunderstorm" item-left></ion-icon>
-                Azure Services
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820524')">
-                <ion-icon name="cafe" item-left></ion-icon>
-                Plugins Support
-            </button>
-
-            <button ion-item (click)="onLink('http://go.microsoft.com/fwlink/?LinkID=820526')">
-                <ion-icon name="paw" item-left></ion-icon>
-                Troubleshooting
-            </button>
-        </ion-list>
-        
+        <ion-card-content>
+            <div class="question">
+                {{matchCard.question}}
+            </div>
+            <div class="options">
+                <div *ngFor="let option of matchCard.options">
+                    <button ion-button block >{{option.name}} {{option.result}}</button>
+                </div>
+            </div>
+            <div class="bet">
+                <ion-row center>
+                    <ion-col>
+                        <button ion-button>-</button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-input type="text" placeholder="Bet"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button>+</button>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <div>
+                <button ion-button (click)="betClicked()">Make a Bet</button>
+            </div>
+            <div class="bet-close">
+                Bets close: {{matchCard.betsClose}}
+            </div>
+           
+        </ion-card-content>
     </ion-card>
-
 </ion-content>
