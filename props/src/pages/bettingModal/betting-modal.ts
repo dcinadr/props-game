@@ -8,6 +8,10 @@ import { NavParams } from 'ionic-angular';
 })
 export class BettingModal {
 
+    selectedOption: string = "Cleveland Indians";
+    availableBalance: number = 1000;
+    currentBet: number = 0;
+
     constructor(public navParams: NavParams) { }
 
     

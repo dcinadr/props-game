@@ -1,1 +1,35 @@
 ﻿
+
+page-betting-modal {
+    
+
+   ion-header {
+       background-color: #006BE5;
+       color: whitesmoke;
+
+       p {
+           margin-left: 20px;
+           font-weight: bold;
+       }
+   }
+
+   ion-content {
+       .selection-content {
+           p {
+               text-align: center;
+               font-weight: bold;
+               font-size: 1.5em;
+           }      
+       }
+       .selection-input {
+           input {
+               text-align: center;
+           }
+       }
+       .button-content {
+           ion-col {
+               text-align: right;
+           }
+       }
+   }
+}

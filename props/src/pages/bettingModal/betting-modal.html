@@ -1,3 +1,30 @@
-﻿<ion-content>
+﻿<ion-header class="modal-betting header">
+    <p>Place your bet...</p>
+</ion-header>
 
+<ion-content>
+    <ion-row class="selection-content">
+        <ion-col col-12 class="text-center">
+            <p>{{selectedOption}}</p>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-12>
+            <ion-range min="0" max="{{availableBalance}}" [(ngModel)]="currentBet" pin="true">
+                <ion-label range-left>0</ion-label>
+                <ion-label range-right>{{availableBalance}}</ion-label>
+            </ion-range>
+        </ion-col>
+    </ion-row>
+    <ion-row class="selection-input">
+        <ion-col col-12 text-center>
+            <ion-input typeof="number" [(ngModel)]="currentBet"></ion-input>
+        </ion-col>
+    </ion-row>
+    <ion-row class="button-content">
+        <ion-col>
+            <button ion-button>Place Bet</button>
+            <button ion-button>Cancel</button>
+        </ion-col>
+    </ion-row>
 </ion-content>

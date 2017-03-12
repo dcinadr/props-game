@@ -2,8 +2,24 @@
 // http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
 
-$modal-inset-width:                 80%;
+
+// Modal settings
+// ---------------------------------------------------
+// NOTE: Still need to determine how to dynamically set 
+// height based on content of modal.  See note below for 
+// the $modal-inset-height-large variable. (DC - 3/12/2017)
+// FYI: For some reason the "min" variables are necessary for 
+// the width and height to take hold.  (E.G. $modal-inset-width 
+// won't affect the width unless $modal-inset-min-width is also set)
+$modal-inset-width:                 80%; // this is currently dynamic based on the width of the phone screen
 $modal-inset-min-width:             90px;
+$modal-inset-height-large:          315px; // <-- This is NOT dynamic (right now it is specific to bettingModal; this needs to change; but needs to be dynamic based on content)
+$modal-inset-min-height-large:      100px;
+//$modal-inset-height-small:          100px;
+//$modal-inset-min-height-small:      100px;
+
+
+
 
 @import "ionic.globals";
 
@@ -27,7 +43,8 @@ $modal-inset-min-width:             90px;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
+  //primary:    #387ef5,
+  primary:    #006BE5,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
