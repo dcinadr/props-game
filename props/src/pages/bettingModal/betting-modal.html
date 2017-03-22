@@ -5,7 +5,7 @@
 <ion-content>
     <ion-row class="selection-content">
         <ion-col col-12 class="text-center">
-            <p>{{selectedOption}}</p>
+            <p>{{selectedOption.name}}</p>
         </ion-col>
     </ion-row>
     <ion-row>
@@ -23,8 +23,8 @@
     </ion-row>
     <ion-row class="button-content">
         <ion-col>
-            <button ion-button>Place Bet</button>
-            <button ion-button>Cancel</button>
+            <button ion-button (click)="placeBetClicked()">Place Bet</button>
+            <button ion-button (click)="cancelClicked()">Cancel</button>
         </ion-col>
     </ion-row>
 </ion-content>

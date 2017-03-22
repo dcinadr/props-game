@@ -7,38 +7,29 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-card *ngFor="let matchCard of matchCards | async">
-        <ion-card-header>
-        </ion-card-header>
+    <ion-card *ngFor="let matchCard of matchCards | async" class="card">
+        <ion-item class="card-header">
+            <h3>{{matchCard.subCategory}}</h3>
+        </ion-item>
         <ion-card-content>
             <div class="question">
                 {{matchCard.question}}
             </div>
             <div class="options">
                 <div *ngFor="let option of matchCard.options">
-                    <button ion-button block (click)="betClicked()">{{option.name}} {{option.result}}</button>
+                    <button ion-button block (click)="betClicked(option, matchCard.options)">
+                        <ion-item>
+                            {{option.name}}
+                            <div item-right *ngIf="option.result && option.result != 0" >
+                                <span>{{option.result}} pts.</span>
+                            </div>
+                        </ion-item>
+                    </button>
                 </div>
-            </div>
-            <div class="bet">
-                <ion-row center>
-                    <ion-col>
-                        <button ion-button>-</button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-input type="text" placeholder="Bet"></ion-input>
-                    </ion-col>
-                    <ion-col>
-                        <button ion-button>+</button>
-                    </ion-col>
-                </ion-row>
-            </div>
-            <div>
-                <button ion-button (click)="betClicked()">Make a Bet</button>
             </div>
             <div class="bet-close">
                 Bets close: {{matchCard.betsClose}}
             </div>
-           
         </ion-card-content>
     </ion-card>
 </ion-content>

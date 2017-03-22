@@ -22,8 +22,17 @@ export class Home implements OnInit {
         this.matchCards = this.matchCardService.getMatchCards().do(x => console.log(x));
     }
 
-    betClicked(): void {
-        let bettingModal = this.modalCtrl.create(BettingModal);
+    betClicked(option, allOptions): void {
+        let bettingModal = this.modalCtrl.create(BettingModal, { selectedOption: option });
+        bettingModal.onDidDismiss(data => {
+            if (data) {
+                // resetting all options before setting the selected option
+                for (let optionItem of allOptions) {
+                    optionItem.result = 0;
+                }
+                option.result = data.bet;  // TODO - fix this because this isn't what we are calling result.  this is the users bet.  but there is not object for this in the data model yet
+            }
+        });
         bettingModal.present();
     }
 

@@ -1,3 +1,30 @@
 page-home {
-    
+    .card {
+        margin: 0 0 10px 0;
+        width: 100%;
+
+        .card-header {
+            background-color: #96e696;
+            min-height: 3.5rem;
+        }
+        ion-card-content {
+            margin-top: 10px;
+        }
+        .options {
+            button {
+                background-color: #6fabf0;
+                height: 2em;
+                padding: .5em;
+
+                ion-item {
+                    background-color: #6fabf0;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+                    color: whitesmoke;
+                    font-size: .9em;
+                }
+            }
+        }
+    }
 }

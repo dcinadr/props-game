@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 @Component({
     selector: 'page-betting-modal',
@@ -8,12 +8,20 @@ import { NavParams } from 'ionic-angular';
 })
 export class BettingModal {
 
-    selectedOption: string = "Cleveland Indians";
+    selectedOption: any;
     availableBalance: number = 1000;
     currentBet: number = 0;
 
-    constructor(public navParams: NavParams) { }
+    constructor(public params: NavParams, public viewCtrl: ViewController) {
+        this.selectedOption = params.get('selectedOption');
+    }
 
-    
+    cancelClicked(): void {
+        this.viewCtrl.dismiss();
+    }
+
+    placeBetClicked(): void {
+        this.viewCtrl.dismiss({ bet: this.currentBet });
+    }
 
 }
