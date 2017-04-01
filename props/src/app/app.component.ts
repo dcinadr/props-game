@@ -12,7 +12,8 @@ import { Page2 } from '../pages/page2/page2';
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = Home;
+    // todo - this will eventually need to be dynamic when login is in place
+    rootPage: any = Home; 
 
     pages: Array<{ title: string, component: any }>;
 
@@ -25,6 +26,7 @@ export class MyApp {
             { title: 'Page Two', component: Page2 }
         ];
 
+
     }
 
     initializeApp() {
@@ -34,6 +36,13 @@ export class MyApp {
             StatusBar.styleDefault();
             Splashscreen.hide();
         });
+
+        this.initializeUser();
+    }
+
+    initializeUser() {
+        // todo - this is temp until user logins are in place
+        localStorage.setItem('userid', 'dcinadr');
     }
 
     openPage(page) {

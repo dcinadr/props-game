@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { Home } from '../pages/home/home';
 import { Page2 } from '../pages/page2/page2';
 import { MatchCardService } from '../services/match-card.service';
+import { UserDataService } from '../services/user-data.service';
 import { BettingModal } from '../pages/bettingModal/betting-modal';
 
 export const firebaseConfig = {
@@ -48,6 +49,6 @@ const myFirebaseAuthConfig = {
     ],
     providers: [
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        MatchCardService]
+        MatchCardService, UserDataService]
 })
 export class AppModule { }
