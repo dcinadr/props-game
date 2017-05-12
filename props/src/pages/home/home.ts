@@ -29,11 +29,12 @@ export class Home implements OnInit {
         this.userDataService.getUser(userid)
             .take(1)
             .toPromise()
-            .then(user => {
+            .then(user => { // <--- TODO - this user is not getting updated when the card gets updated
                 this.matchCards = this.matchCardService.getMatchCards()
                     .map(cards => {
                         // note: not sure why we need to map again but it currently doesn't work otherwise
                         return cards.map(card => { 
+                            // TODO - probably need to get bets fresh here so that if there are changes it is reflected
                             if (!user.bets) {
                                 return card;
                             }

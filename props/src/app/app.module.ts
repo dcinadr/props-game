@@ -13,6 +13,7 @@ import { Page2 } from '../pages/page2/page2';
 import { MatchCardService } from '../services/match-card.service';
 import { UserDataService } from '../services/user-data.service';
 import { BettingModal } from '../pages/bettingModal/betting-modal';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCs25dhBpwgCyow88UI8ZrhJLtsQjtbtBg",
@@ -32,7 +33,8 @@ const myFirebaseAuthConfig = {
         MyApp,
         Home,
         Page2,
-        BettingModal
+        BettingModal,
+        ProgressBarComponent
     ],
     imports: [
         IonicModule.forRoot(MyApp),
