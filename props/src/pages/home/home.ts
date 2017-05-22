@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/single';
 
-//import { MatchCard } from '../../models/match-card';
 import { MatchCardService } from '../../services/match-card.service';
 import { UserDataService } from '../../services/user-data.service';
 import { BettingModal } from '../bettingModal/betting-modal';
@@ -19,35 +18,41 @@ import { BettingModal } from '../bettingModal/betting-modal';
 export class Home implements OnInit {
 
     matchCards: Observable<any>;
+    userData: Observable<any>;
+    userDataSubscription: any;  // TODO - might want to make this more strongly typed by referencing Subscription
+    user: any;
 
     constructor(public navCtrl: NavController, public modalCtrl: ModalController,
         private matchCardService: MatchCardService, private userDataService: UserDataService) { }
 
     ngOnInit(): void {
         let userid = localStorage.getItem('userid');
-        let user: any;
-        this.userDataService.getUser(userid)
-            .take(1)
-            .toPromise()
-            .then(user => { // <--- TODO - this user is not getting updated when the card gets updated
-                this.matchCards = this.matchCardService.getMatchCards()
-                    .map(cards => {
-                        // note: not sure why we need to map again but it currently doesn't work otherwise
-                        return cards.map(card => { 
-                            // TODO - probably need to get bets fresh here so that if there are changes it is reflected
-                            if (!user.bets) {
-                                return card;
-                            }
-                            let bet = user.bets[card.id];
-                            if (!bet) {
-                                return card;
-                            }
-                            // TODO - give options id so we aren't selecting option based on name (cause the name can change)
-                            card.options.filter(x => x.name === bet.selectedOption)[0].result = bet.amount;   
-                            return card;
-                        });
-                    });
-            });        
+        
+        this.userData = this.userDataService.getUser(userid);
+        var userDataSubscription = this.userData.subscribe(user => {
+            this.user = user;
+        });
+
+        this.matchCards = this.matchCardService.getMatchCards()
+            .map(cards => {
+                // note: not sure why we need to map again but it currently doesn't work otherwise
+                return cards.map(card => {
+                    if (!this.user) {
+                        return card;
+                    }
+
+                    if (!this.user.bets) {
+                        return card;
+                    }
+                    let bet = this.user.bets[card.id];
+                    if (!bet) {
+                        return card;
+                    }
+                    // TODO - give options id so we aren't selecting option based on name (cause the name can change)
+                    card.options.filter(x => x.name === bet.selectedOption)[0].result = bet.amount;
+                    return card;
+                });
+            });
     }
 
     betClicked(cardId, option, allOptions): void {

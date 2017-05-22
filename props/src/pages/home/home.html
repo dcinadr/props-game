@@ -17,6 +17,7 @@
             </div>
             <div class="options">
                 <div *ngFor="let option of matchCard.options">
+                    <!--<match-card-option [betClick]="betClicked(matchCard.id, option, matchCard.options)"></match-card-option>-->
                     <button ion-button block (click)="betClicked(matchCard.id, option, matchCard.options)">
                         <ion-item>
                             {{option.name}}
