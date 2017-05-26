@@ -59,5 +59,8 @@
     "ProjectOpened": [
       "ionic:build"
     ]
+  },
+  "config": {
+    "ionic_source_map": "source-map"
   }
 }
